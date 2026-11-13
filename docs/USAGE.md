@@ -54,6 +54,16 @@ The status cards summarize tracking gates and the selected duration; detailed
 measurements and exports remain available without crowding the overview.
 For a local path, expand **Use a file path instead** on the Footage step.
 
+**AI & practice** reports now separate exact measurements, **What this means**,
+and **What to review**. Positioning findings quote dominant accepted-court zone,
+tracking availability and missing seconds. Time comparisons include both source
+windows and same-zone percentages; each window needs >=95% availability and >=5
+accepted in-court seconds. If those windows are unavailable, the card explains why.
+Counts of footwork candidates require video confirmation. Older saved drafts
+prompt you to click **Analyze tracking and footwork** to regenerate the stricter
+format; no automatic API request is made. GPT-OSS 120B remains the default, with
+medium reasoning; free-provider quotas and evidence-gated practice still apply.
+
 1. Supply an authorized YouTube URL or local path. Playlist parameters are removed.
 2. Mark rally intervals and distinct athlete names, including end changes. Each
    run supports a span of up to ten minutes, including retained context or gaps.

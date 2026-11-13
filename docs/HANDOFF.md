@@ -2,7 +2,8 @@
 
 ## Resume here (2026-11-13)
 
-- Latest application change: `93328a2`, tab underline spacing; visually checked
+- Latest: strict AI report contract v5, described below. Earlier `93328a2`
+  tab underline spacing was visually checked
   in the rebuilt Docker UI. The full 184-test native/container suites passed
   before this CSS-only follow-up and were not repeated for spacing.
 - Public source: https://github.com/kagamirudo/shuttlecoach-ai, branch `main`.
@@ -16,7 +17,8 @@
 - Main unfinished evidence task remains current-run player tracking (84% usable
   pairs versus 95% required), birdie validation and actual-rally review. Do not
   describe the UI refresh or the unrelated historical demo as a new accuracy pass.
-  Practice remains gated; no new AI API call was made during UI work.
+  Practice remains gated; the later strict-report work made two authorized
+  anonymized Groq calls, as recorded below. UI-only work made no API calls.
 - Preserve saved footage, calibration, names, run artifacts and Keychain/runtime
   secrets. User prefers small, direct changes and short responses; avoid extra
   approval loops and unnecessary test reruns for documentation/CSS-only changes.
@@ -64,7 +66,8 @@ the current source. README documents its measured scope and audit limitations.
 - `shuttlecoach/validation.py`: fixed 95% player-pair gate; no invented labels.
 - `shuttlecoach/timeline.py`: original clocks and cuts for assembled source.
 - `make run`, `make test`, `make help`. Python `.venv/bin/python`, Python 3.12.
-- Last completed suite: **184 tests passed natively and in Docker** (`.cache/docker-native-tests.log`, `.cache/docker-tests.log`).
+- Latest completed suites: **194 tests passed natively and in Docker**
+  (`.cache/strict-ai-tests.log`, `.cache/strict-ai-docker-tests.log`).
   Includes AppTest checks that practice cards appear for current passing reports
   and disappear for blocked/stale reports, footwork timing/review boundaries,
   regression past-only behavior, cuts/end changes, and VFR preview timestamps.
@@ -106,6 +109,43 @@ the current source. README documents its measured scope and audit limitations.
 ## Remaining evidence and future work
 
 ### Optional LLM wording (2026-11-13)
+
+Current follow-up: report version **5**, still Groq `openai/gpt-oss-120b`, now
+`reasoning_effort=medium`, temperature 0.1 and a 5,000 completion-token ceiling.
+The previous schema checked format but accepted number-free generic findings.
+New findings require topic, exact measurement, meaning, video-review focus and
+same-player citations. Positioning measurement text must exactly match local
+dominant-zone/coverage/missing-time values. Comparisons must exactly match a local
+same-zone template with both source windows, so swapped values/zones are rejected.
+Comparisons need two distinct non-overlapping windows with >=95% availability
+and >=5 accepted in-court seconds each. Topics cannot be omitted or duplicated.
+Unvalidated interpretations cannot call the data reliable, accurate or correct;
+this check does not constitute comprehensive semantic verification.
+
+The UI separates **What this means** and **What to review**, and explicitly says
+when time comparison is unavailable. Each comparison's evidence expander lets
+the user choose either cited source window for playback. Unconfirmed footwork prose uses locally
+grounded pose coverage and candidate counts plus an explicit video-review task;
+these counts still cannot establish real steps, movement quality or practice.
+Legacy caches request regeneration rather than displaying the old vague format.
+
+Current recording's v5 report was generated with the existing Keychain key:
+two player cards, five findings, **6,520 provider tokens**. Near Middle occupancy
+is 74.7%; a cited comparison is 81.5% (0–30s) versus 73.3% (60–90s). Far coverage
+is 77.9%, missing 82.8s; none of its windows qualifies for a temporal comparison.
+Both reports remain descriptive; tracking gates were not changed or rerun.
+Two live calls were made during development (6,537 tokens for v4, 6,520 for v5);
+there are no automatic retries, new models/accounts or paid billing changes.
+Earlier reports are preserved under the run's `audit/before-ai-analysis-v4/` and
+`audit/ai-v4-development/`; private results are not committed. Native suite:
+**194 passed**, `.cache/strict-ai-tests.log`; Docker **194 passed**,
+`.cache/strict-ai-docker-tests.log`. The live Docker UI displayed the v5 cards,
+all five findings and the far-player comparison limit, with practice still gated.
+The comparison's source-window selector was also exercised on the live report;
+native AppTest verifies choosing the second window updates video start time.
+
+The paragraphs below describe the earlier v3 implementation and its historical
+tests; they do not override the current v5 contract.
 
 `shuttlecoach/llm_report.py` and `report_ui.py` now provide inline **AI analysis**
 above birdie/review controls. Click **Analyze tracking and footwork**; credentials

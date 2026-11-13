@@ -136,3 +136,19 @@ state-preserving reruns and blocked/stale practice paths. Browser checks covered
 video loading, setup navigation, current results and inline analysis at actual
 614px/816px widths. Full export/calibration browser scripts were updated but not
 executed; tracking accuracy and provider calls were not rerun for this UI change.
+
+## Strict AI report follow-up (2026-11-13)
+
+Report v5 enforces required topics, canonical local measurement text, same-player
+citations, exact source-window/zone pairs and separate interpretation/review tasks.
+Number-free summaries and swapped window measurements are rejected. Temporal
+comparisons need two windows with >=95% availability and >=5 accepted in-court
+seconds; this is a descriptive report filter, not a change to validation gates.
+Current recording has five inline findings; its far-player data does not support
+a time comparison under this filter. Candidate footwork text remains explicitly
+unconfirmed. Two development calls used the saved Groq key (6,537 + 6,520 provider
+tokens); v5 uses GPT-OSS 120B with medium reasoning. No new provider/account,
+credential storage, automatic retry or paid upgrade was added. Native and Docker
+suites passed 194 tests. Actual report cards were checked in the rebuilt app.
+Tracking accuracy was not rerun and practice remains gated. Semantic prose still
+needs human review; schema/measurement checks do not prove tactical conclusions.

@@ -105,12 +105,15 @@ def test_review_explains_coverage_and_zones_without_exposing_raw_measurements(tm
            'summary':'Measured positioning changes are available for review.', 'limitations':'Measured data, not unseen video.',
            'player_labels':{'P1':'Alice'},'facts':[{'id':'F1','player_id':'P1','kind':'selected_window_overview',
                'start_s':0.,'end_s':2.,'metrics':{'tracking_coverage':'100.0%','tracked_time':'2.0 s','missing_time':'0.0 s','front':'100.0%','middle':'0.0%','rear':'0.0%'}}],
-           'analyses':[{'player_id':'P1','observations':[{'finding':'Accepted positions were concentrated near the net.','evidence_ids':['F1']}],
+           'analyses':[{'player_id':'P1','observations':[{'topic':'positioning','finding':'Accepted positions were concentrated near the net.','meaning':'Only accepted positions contribute to this distribution.','review_focus':'Check whether pauses contribute to this distribution.','evidence_ids':['F1']}],
                        'limitations':'This does not establish a technique weakness.'}],'sections':[]}
     (run/'llm_report.json').write_text(json.dumps(draft))
     app.run()
     assert not app.exception
     assert any(m.value=='Accepted positions were concentrated near the net.' for m in app.markdown)
+    assert any(m.value=='Only accepted positions contribute to this distribution.' for m in app.markdown)
+    assert any(m.value=='Check whether pauses contribute to this distribution.' for m in app.markdown)
+    assert any('Time comparison unavailable' in c.value for c in app.caption)
     settings=next(e for e in app.expander if e.label=='AI connection settings')
     assert not any(m.value=='Accepted positions were concentrated near the net.' for m in settings.markdown)
     assert not any('Download AI' in b.label for b in app.button)
@@ -120,6 +123,24 @@ def test_review_explains_coverage_and_zones_without_exposing_raw_measurements(tm
     assert not any(b.label=='Save API key on this Mac' for b in app.button)
     assert not any(c.label=='Remember API key on this Mac' for c in app.checkbox)
     assert any('Docker runtime secret' in s.value for s in app.success)
+    # A comparison can open either cited source moment, rather than only the first.
+    for fact_id,start,end in [('F2',0.,30.),('F3',60.,90.)]:
+        draft['facts'].append({'id':fact_id,'player_id':'P1','kind':'positioning_time_window',
+            'start_s':start,'end_s':end,'metrics':{**draft['facts'][0]['metrics'],'in_court_time':'30.0 s'}})
+    draft['analyses'][0]['observations'].append({'topic':'change',
+        'finding':'Two measured windows are available.','meaning':'Compare accepted court time only.',
+        'review_focus':'Check both windows for pauses.','evidence_ids':['F2','F3']})
+    (run/'llm_report.json').write_text(json.dumps(draft))
+    app.run()
+    next(s for s in app.selectbox if s.label=='Source window').set_value(1).run()
+    assert not app.exception
+    assert any(v.proto.start_time==59 for v in app.get('video'))
+    draft['report_version']=REPORT_VERSION-1
+    (run/'llm_report.json').write_text(json.dumps(draft))
+    app.run()
+    assert not app.exception
+    assert any('stricter report format' in i.value for i in app.info)
+    assert not any(m.value=='Accepted positions were concentrated near the net.' for m in app.markdown)
 
 
 def test_changed_duration_and_names_can_start_a_separate_tracking_job(tmp_path,monkeypatch):

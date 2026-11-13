@@ -23,7 +23,7 @@ def fact_caption(fact):
 def show_ai_analysis(run, manifest, active=False):
     run=Path(run)
     st.subheader('AI analysis')
-    st.write('Positioning, changes over time, and footwork evidence explained here, with the measurements and video moments behind each finding.')
+    st.write('Exact measurements, what they support, and what to check on video. Comparisons require sufficiently covered time windows; practice still requires validated evidence.')
     try:saved_key=credentials.load_key()
     except (ValueError,OSError) as exc:
         saved_key=None
@@ -56,7 +56,7 @@ def show_ai_analysis(run, manifest, active=False):
         return
     draft=json.loads(path.read_text())
     if draft.get('report_version')!=llm_report.REPORT_VERSION:
-        st.info('The previous one-line draft did not include movement evidence. Run AI analysis to replace it with player-by-player findings.')
+        st.info('A stricter report format is available. Click Analyze tracking and footwork to replace the previous draft with exact measurements, interpretation and specific video checks.')
         return
     try:current=draft.get('evidence_signature')==coaching.evidence_signature(run)
     except (OSError,ValueError,KeyError):current=False
@@ -78,16 +78,25 @@ def show_ai_analysis(run, manifest, active=False):
                 b.metric('Most observed zone',f"{dominant.title()} · {m[dominant]}" if dominant else 'Unavailable')
                 c.metric('No accepted position',m['missing_time'])
                 st.caption('Zone shares use accepted in-court time; they exclude missing positions and may include pauses.')
+            if 'change' not in llm_report.player_requirements(draft,player['player_id'])['required_topics']:
+                st.caption('Time comparison unavailable: it needs two non-overlapping source windows, each with at least 95% tracking availability and 5 accepted in-court seconds. A whole-window percentage does not establish a change over time.')
             for number,finding in enumerate(player['observations'],1):
-                if finding.get('basis')=='review_required':st.markdown('**Footwork evidence · review needed**')
+                titles={'positioning':'Positioning & tracking reliability','change':'Time-window comparison','footwork':'Footwork evidence'}
+                st.markdown(f"**{titles[finding['topic']]}**")
                 st.write(finding['finding'])
+                st.markdown('**What this means**')
+                st.write(finding['meaning'])
+                st.markdown('**What to review**')
+                st.write(finding['review_focus'])
                 with st.expander(f'Measurements and video · finding {number}'):
                     sources=[facts[ref] for ref in finding['evidence_ids']]
                     for fact in sources:st.caption(fact_caption(fact))
-                    timed=next((r for r in sources if r['kind']=='positioning_time_window'),next((r for r in sources if r['start_s'] is not None),None))
+                    timed=[r for r in sources if r['start_s'] is not None]
                     if timed:
+                        selected=st.selectbox('Source window',range(len(timed)),format_func=lambda i:f"{timed[i]['start_s']:.1f}–{timed[i]['end_s']:.1f}s",
+                                              key=f"ai_window_{run.name}_{player['player_id']}_{number}") if len(timed)>1 else 0
                         original=manifest['video'].get('original_source',manifest['video'])
-                        st.video(original['path'],start_time=max(0,int(timed['start_s'])-1))
+                        st.video(original['path'],start_time=max(0,int(timed[selected]['start_s'])-1))
             st.caption(player['limitations'])
     if draft['sections']:
         local_report=json.loads((run/'coaching.json').read_text())

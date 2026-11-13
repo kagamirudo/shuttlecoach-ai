@@ -32,7 +32,7 @@ def test_unapproved_sections_numbers_and_links_are_rejected(bad):
 def test_http_request_cache_and_key_never_persist(tmp_path,monkeypatch):
     monkeypatch.setattr(llm,'write_coaching_report',lambda run:evidence())
     calls=[]
-    output={'analyses':[{'player_id':'P1','observations':[{'finding':'The approved pattern concerns rear-court positioning.','evidence_ids':['F1']}]}],'sections':[{'id':1,'explanation':'Rear-court positioning repeated.','practice':'Use controlled feeds and review recovery.'}]}
+    output={'analyses':[{'player_id':'P1','observations':[{'topic':'positioning','finding':'The approved pattern concerns rear-court positioning.','meaning':'This refers to the supplied reviewed pattern.','review_focus':'Review the rear-court evidence before interpreting recovery.','evidence_ids':['F1']}]}],'sections':[{'id':1,'explanation':'Rear-court positioning repeated.','practice':'Use controlled feeds and review recovery.'}]}
     class Response:
         def __enter__(self):return self
         def __exit__(self,*args):pass
@@ -44,10 +44,12 @@ def test_http_request_cache_and_key_never_persist(tmp_path,monkeypatch):
         assert req.get_header('Accept')=='application/json'
         body=json.loads(req.data)
         assert body['model']==llm.MODEL and 'Gary' not in body['messages'][1]['content']
+        assert body['reasoning_effort']=='medium' and body['response_format']['json_schema']['strict']
         return Response()
     monkeypatch.setattr(llm.request,'urlopen',send)
+    (tmp_path/'llm_report.json').write_text(json.dumps({'evidence_signature':'verified','model':llm.MODEL,'report_version':llm.REPORT_VERSION-1}))
     result=llm.generate_llm_report(tmp_path,'secret-test-key')
-    assert result['mode']=='coaching' and len(calls)==1
+    assert result['mode']=='coaching' and result['report_version']==llm.REPORT_VERSION and len(calls)==1
     assert llm.generate_llm_report(tmp_path)==result and len(calls)==1
     assert all('secret-test-key' not in p.read_text() for p in tmp_path.iterdir())
 
@@ -90,8 +92,28 @@ def measured_context():
 
 
 def analysis_response(facts):
-    return {'analyses':[{'player_id':p,'observations':[{'finding':'The measurements describe accepted positioning, not a diagnosed weakness.',
-                'evidence_ids':[next(r['id'] for r in facts['facts'] if r['player_id']==p)]}]} for p in facts['players']], 'sections':[]}
+    analyses=[]
+    for player in facts['players']:
+        rows=[r for r in facts['facts'] if r['player_id']==player]
+        overall=next(r for r in rows if r['kind']=='selected_window_overview');m=overall['metrics']
+        zone=max(['front','middle','rear'],key=lambda z:float(m[z].rstrip('%')))
+        observations=[{'topic':'positioning',
+            'finding':f"Dominant accepted court zone: {zone.title()} ({m[zone]}). Tracking availability: {m['tracking_coverage']}; missing position time: {m['missing_time']}.",
+            'meaning':'This describes observed court occupancy; it does not establish a tactical cause.',
+            'review_focus':'Check whether pauses contribute to the observed court distribution.', 'evidence_ids':[overall['id']]}]
+        requirements=llm.player_requirements(facts,player)
+        if 'change' in requirements['required_topics']:
+            first,last=[next(r for r in rows if r['id']==ref) for ref in (requirements['eligible_change_evidence'][0],requirements['eligible_change_evidence'][-1])]
+            observations.append({'topic':'change',
+                'finding':f"Middle accepted court time: {first['metrics']['middle']} during {first['start_s']:.1f}–{first['end_s']:.1f} s; {last['metrics']['middle']} during {last['start_s']:.1f}–{last['end_s']:.1f} s.",
+                'meaning':'These are two sampled distributions, not evidence of a movement direction.',
+                'review_focus':'Check the source windows for pauses and changes in activity.', 'evidence_ids':[first['id'],last['id']]})
+        if 'footwork' in requirements['required_topics']:
+            observations.append({'topic':'footwork','finding':'Footwork candidates require review.',
+                'meaning':'Candidate counts cannot grade technique.', 'review_focus':'Confirm the candidates on video.',
+                'evidence_ids':requirements['footwork_evidence'][:1]})
+        analyses.append({'player_id':player,'observations':observations})
+    return {'analyses':analyses,'sections':[]}
 
 
 def test_failed_gate_still_supplies_measured_position_changes_and_candidate_context():
@@ -123,16 +145,44 @@ def test_analysis_requires_measured_numbers_and_player_specific_evidence(problem
 
 def test_cited_measurement_numbers_are_allowed_in_findings():
     facts=measured_context();response=analysis_response(facts)
-    response['analyses'][0]['observations'][0]['finding']='Tracking availability is 100.0%, with 0.0 s missing.'
+    response['analyses'][0]['observations'][0]['finding']='Dominant accepted court zone: Middle (50.0%). Tracking availability: 100.0%; missing position time: 0.0 s.'
     assert llm.validate_response(json.dumps(response),facts)
 
 
 def test_candidate_counts_never_become_claims_of_confirmed_activity():
     facts=measured_context();response=analysis_response(facts)
-    item=response['analyses'][0]['observations'][0]
+    item=response['analyses'][0]['observations'][-1]
     item.update(finding='These counts prove frequent steps and superior movement.',
                 evidence_ids=[next(r['id'] for r in facts['facts'] if r['kind']=='unconfirmed_footwork_candidates')])
     checked=llm.validate_response(json.dumps(response),facts)
-    finding=checked['analyses'][0]['observations'][0]
-    assert finding['basis']=='review_required' and 'do not establish step frequency' in finding['finding']
+    finding=checked['analyses'][0]['observations'][-1]
+    assert finding['basis']=='review_required' and 'do not establish step frequency' in finding['meaning']
     assert 'superior' not in finding['finding']
+
+
+@pytest.mark.parametrize('problem',['vague','missing_meaning','duplicate_topic','missing_change','untimed_change','wrong_zone','invented_interpretation','non_string_reference','false_accuracy'])
+def test_strict_report_rejects_fluff_and_incomplete_comparisons(problem):
+    facts=measured_context();response=analysis_response(facts)
+    items=response['analyses'][0]['observations']
+    if problem=='vague':items[0]['finding']='The middle zone has the highest percentage, with some missing time.'
+    if problem=='missing_meaning':del items[0]['meaning']
+    if problem=='duplicate_topic':items[1]=copy.deepcopy(items[0])
+    if problem=='missing_change':items.pop(1)
+    if problem=='untimed_change':items[1]['finding']='Middle accepted court time is 100.0% then 0.0%.'
+    if problem=='wrong_zone':items[1]['finding']=items[1]['finding'].replace('Middle','Rear')
+    if problem=='invented_interpretation':items[0]['meaning']='Recovery takes 99.9 seconds.'
+    if problem=='non_string_reference':items[0]['evidence_ids']=[{}]
+    if problem=='false_accuracy':items[0]['meaning']='High coverage indicates reliable positioning data.'
+    with pytest.raises(ValueError):llm.validate_response(json.dumps(response),facts)
+
+
+def test_low_coverage_windows_cannot_support_time_comparisons():
+    facts=measured_context()
+    low=next(r for r in facts['facts'] if r['player_id']=='P1' and r['kind']=='positioning_time_window')
+    low['metrics']['tracking_coverage']='70.0%'
+    assert 'change' not in llm.player_requirements(facts,'P1')['required_topics']
+    response=analysis_response(facts)
+    assert llm.validate_response(json.dumps(response),facts)
+    response['analyses'][0]['observations'].append({'topic':'change','finding':'Compare these windows.',
+        'meaning':'This suggests a contrast.','review_focus':'Check the source.', 'evidence_ids':[low['id']]})
+    with pytest.raises(ValueError):llm.validate_response(json.dumps(response),facts)

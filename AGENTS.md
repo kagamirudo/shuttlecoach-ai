@@ -37,5 +37,9 @@ historical recording's pass applies to a new recording.
   discuss measured accepted positions while quality gates fail; personalized
   practice remains gated. Require same-player evidence IDs and grounded numbers.
   Candidate footwork counts cannot establish movement quality or true step rates.
+- AI report v5 requires exact local measurement text, topic/meaning/video-review
+  fields and same-player citations. Temporal contrasts require two non-overlapping
+  windows with >=95% availability and >=5 accepted in-court seconds. Preserve the
+  strict validator and invalidate old report caches when changing that contract.
 
 This file does not authorize delegation, new cloud services or external messages.
