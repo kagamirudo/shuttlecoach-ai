@@ -1,0 +1,19 @@
+[project]
+name = "shuttlecoach"
+version = "0.2.0"
+description = "Local badminton player and shuttle tracking with evidence-gated reports"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "streamlit>=1.41,<2", "streamlit-image-coordinates>=0.2,<1",
+  "ultralytics>=8.3,<9", "lap>=0.5,<0.6", "duckdb>=1.1,<2",
+  "pyyaml>=6,<7", "av>=14,<18", "imageio-ffmpeg>=0.6,<0.7",
+  "yt-dlp[default]", "matplotlib>=3.9,<4",
+  "parse>=1.20,<2", "pycocotools>=2.0,<3", "tqdm>=4.66,<5",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "playwright>=1.65,<2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

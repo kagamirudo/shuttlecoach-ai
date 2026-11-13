@@ -1,0 +1,10 @@
+# Added at runtime by the helper only when a saved/environment key is available.
+services:
+  app:
+    environment:
+      GROQ_API_KEY_FILE: /run/secrets/groq_api_key
+    secrets:
+      - groq_api_key
+secrets:
+  groq_api_key:
+    environment: GROQ_API_KEY

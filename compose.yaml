@@ -1,0 +1,22 @@
+name: shuttlecoach
+services:
+  app:
+    build:
+      context: .
+      args:
+        # Keep native absolute media paths valid without rewriting saved evidence.
+        APP_DIR: ${SHUTTLECOACH_APP_DIR:-${PWD:-/app}}
+    image: shuttlecoach:local
+    user: "${SHUTTLECOACH_UID:-1000}:${SHUTTLECOACH_GID:-1000}"
+    init: true
+    ports:
+      - "127.0.0.1:${DOCKER_PORT:-8502}:8501"
+    volumes:
+      - ./data:${SHUTTLECOACH_APP_DIR:-${PWD:-/app}}/data
+      - ./models:${SHUTTLECOACH_APP_DIR:-${PWD:-/app}}/models
+      - ./results:${SHUTTLECOACH_APP_DIR:-${PWD:-/app}}/results
+      - ./.cache:${SHUTTLECOACH_APP_DIR:-${PWD:-/app}}/.cache
+    restart: unless-stopped
+    stop_grace_period: 30s
+    security_opt:
+      - no-new-privileges:true

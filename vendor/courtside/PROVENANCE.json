@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/jayclim/BadmintonAI",
+  "revision": "5c356f05cde0ed90c75316c133e0aba495e5232b",
+  "license": "MIT",
+  "files": {
+    "LICENSE": "8a88d393edab6088e2fa90dbd5b78af17a249215e0f6451ae261b9c8a108d852",
+    "src/badminton/__init__.py": "d08d6c615c8163e58e01b02d24aec0286e6346bc016b9ee71b869153815dda86",
+    "src/badminton/detect.py": "78ac973856015805aee52a8d43254757202dd6731ccbe615c3230d2b745860d1",
+    "src/badminton/court.py": "4f118dc259d29a860cdc1b4457e09f386203c2aa7e4422b22a0179f3b1254a9b",
+    "src/badminton/config.py": "15c57ca85be37e0c37a1991c233d9a675dca01b754014ad0d53d122b06ead329",
+    "src/badminton/db.py": "af8e80897b1dd8f1cb00cbce40cc1e479309c6f020a1cc0a15b34fb6a380f1d6",
+    "src/badminton/viz.py": "932743a97cb2449722b9c7e45976bfa4ac271951fabe4a812de1791ce3b8a642",
+    "src/badminton/render_overlay.py": "48d24d36c1dc33c76f05ab070f4de80f9ada8e25b45260cdf17f1e4209626d78",
+    "schema/schema.sql": "0f17f2a378b1b96ef21bdd5ed5dd2071cfe11b9fd8726894f61ebd999edbd791"
+  }
+}
