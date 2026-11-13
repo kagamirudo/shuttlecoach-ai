@@ -7,6 +7,10 @@ historical recording's pass applies to a new recording.
 
 - Prefer `make docker-up` for the packaged app at port 8502; native `make run`
   remains at 8501 for Mac MPS. Read `docs/DOCKER.md`; use `make help` for targets.
+- UI styling lives in `shuttlecoach/ui.css` and `.streamlit/config.toml`. Preserve
+  widget keys and mounted tab contents; see `docs/DEVELOPMENT.md` for tab styling
+  and state checks. Unsaved calibration can reset on container/browser-session
+  restart; finish active workers and preserve configuration before rebuilding.
 - Keep BadmintonAI and TrackNet vendored sources unchanged. Use local adapters.
 - Preserve source clocks, frame maps, manual calibration and old run artifacts.
 - Never lower tracking quality gates to hide occlusions. Forecasts/interpolation

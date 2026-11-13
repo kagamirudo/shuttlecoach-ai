@@ -41,6 +41,20 @@ or edit existing run artifacts to make validation pass.
 Finish active tracking before stopping: interrupted workers do not resume
 automatically after a container restart.
 
+### What survives a restart
+
+Saved run artifacts in the four mounted folders survive. Unsaved preparation
+inputs (clicked court points, player/time edits and review checkboxes) live in
+Streamlit session state; a container restart or a new browser session can reset
+them. Changing tabs within the current app keeps those widgets mounted.
+
+Before restarting during setup, use **Download reviewed configuration** and save
+the JSON somewhere durable, such as `data/clip-config.json`. A complete, reviewed
+configuration can be run later with `make analyze CONFIG="data/clip-config.json"`
+in the native environment. There is currently no configuration-import control
+that restores those points into the preparation UI. Existing completed analyses
+can be reopened from **Review & validate → Analysis**.
+
 The launcher sets the image's application path to the native repository's
 absolute path. This lets existing manifests continue to resolve source/model/map
 paths without changing signed/frozen evidence. Run from the same project folder

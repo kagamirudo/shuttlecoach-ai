@@ -37,6 +37,23 @@ No models, private footage or generated results belong in build context or Git.
 Browser checks under `scripts/` require native Chrome and an already-running app;
 the container test target runs unit/integration/AppTest checks, not Chrome UI tests.
 
+## UI maintenance
+
+Keep visual changes in `shuttlecoach/ui.css` and `.streamlit/config.toml` where
+possible. Streamlit 1.67 uses React Aria tabs: the underline is
+`.react-aria-SelectionIndicator`, positioned relative to its tab. It sits 0.45rem
+below the pill, with extra tab-list bottom padding. Older Base Web tab selectors
+do not control this indicator. Recheck this selector after Streamlit upgrades.
+
+Keep widget keys and all setup/review tab contents stable across reruns; otherwise
+calibration and input edits can disappear. `tests/test_app.py` covers reruns,
+completed-job navigation, tab placement and stale/blocked coaching. Run `make test`
+for workflow changes; verify CSS changes visually in the rebuilt app. Rebuild
+Docker with `make docker-up` after source changes, once active workers finish.
+See [restart persistence](DOCKER.md#what-survives-a-restart) before restarting an
+in-progress calibration. Do not publish local screenshots containing private
+footage, identities or credentials; keep those under ignored `.cache/`.
+
 ## Packaging and evidence rules
 
 The root Makefile keeps native targets and adds `docker-*` targets. Compose mounts

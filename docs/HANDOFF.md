@@ -10,6 +10,9 @@
   The temporary UI review server on 8503 was stopped. Native 8501 is separate.
 - Setup/review navigation and installation docs are current; see the dashboard
   redesign section below. No immediate work is required by the latest request.
+- Maintenance docs now explain session-state versus disk persistence, exporting
+  setup before restart, the current lack of UI config import, and React Aria
+  underline styling. Root `AGENTS.md` points future agents to these instructions.
 - Main unfinished evidence task remains current-run player tracking (84% usable
   pairs versus 95% required), birdie validation and actual-rally review. Do not
   describe the UI refresh or the unrelated historical demo as a new accuracy pass.
