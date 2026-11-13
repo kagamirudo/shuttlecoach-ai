@@ -1,5 +1,23 @@
 # Current project handoff
 
+## Resume here (2026-11-13)
+
+- Latest application change: `93328a2`, tab underline spacing; visually checked
+  in the rebuilt Docker UI. The full 184-test native/container suites passed
+  before this CSS-only follow-up and were not repeated for spacing.
+- Public source: https://github.com/kagamirudo/shuttlecoach-ai, branch `main`.
+  Docker dashboard: http://127.0.0.1:8502; `make docker-up` rebuilds changed code.
+  The temporary UI review server on 8503 was stopped. Native 8501 is separate.
+- Setup/review navigation and installation docs are current; see the dashboard
+  redesign section below. No immediate work is required by the latest request.
+- Main unfinished evidence task remains current-run player tracking (84% usable
+  pairs versus 95% required), birdie validation and actual-rally review. Do not
+  describe the UI refresh or the unrelated historical demo as a new accuracy pass.
+  Practice remains gated; no new AI API call was made during UI work.
+- Preserve saved footage, calibration, names, run artifacts and Keychain/runtime
+  secrets. User prefers small, direct changes and short responses; avoid extra
+  approval loops and unnecessary test reruns for documentation/CSS-only changes.
+
 Updated 2026-11-13. Implemented and tested: video-assisted footwork candidate
 analysis/review, clear gated practice cards, and a separate short-gap regression
 preview. No neural model was trained. Footwork candidate accuracy and long
