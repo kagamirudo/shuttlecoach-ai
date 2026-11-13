@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="430" viewBox="0 0 1280 430" role="img">
+<title>ShuttleCoach · your first local run</title>
+<desc>Install once. Start the app with one command. Your footage stays in local folders.. Schematic illustration, not a screenshot.</desc>
+<rect x="0" y="0" width="1280" height="430" rx="0" fill="#f2f7f4" stroke="#f2f7f4"/>
+<rect x="0" y="0" width="1280" height="118" rx="0" fill="#153d32" stroke="#153d32"/>
+<text x="44" y="51" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="white" font-weight="700">ShuttleCoach · your first local run</text>
+<text x="44" y="88" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#c9e8d9" font-weight="400">Install once. Start the app with one command. Your footage stays in local folders.</text>
+<rect x="36" y="155" width="274" height="205" rx="14" fill="white" stroke="#d8e5df"/>
+<circle cx="71" cy="189" r="19" fill="#16875d"/>
+<text x="65" y="197" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="white" font-weight="700">1</text>
+<text x="58" y="242" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#203c33" font-weight="700">Install tools</text>
+<text x="58" y="282" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#566b63" font-weight="400">Docker + Compose</text>
+<text x="58" y="315" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Git · Make · Python 3</text>
+<text x="321" y="270" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#16875d" font-weight="700">→</text>
+<rect x="348" y="155" width="274" height="205" rx="14" fill="white" stroke="#d8e5df"/>
+<circle cx="383" cy="189" r="19" fill="#16875d"/>
+<text x="377" y="197" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="white" font-weight="700">2</text>
+<text x="370" y="242" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#203c33" font-weight="700">Clone the project</text>
+<text x="370" y="282" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#566b63" font-weight="400">Public GitHub repository</text>
+<text x="370" y="315" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">No account needed to clone</text>
+<text x="633" y="270" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#16875d" font-weight="700">→</text>
+<rect x="660" y="155" width="274" height="205" rx="14" fill="white" stroke="#d8e5df"/>
+<circle cx="695" cy="189" r="19" fill="#16875d"/>
+<text x="689" y="197" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="white" font-weight="700">3</text>
+<text x="682" y="242" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#203c33" font-weight="700">Start the container</text>
+<text x="682" y="282" font-family="Menlo, Consolas, monospace" font-size="19" fill="#566b63" font-weight="400">make docker-up</text>
+<text x="682" y="315" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Wait for Healthy</text>
+<text x="945" y="270" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#16875d" font-weight="700">→</text>
+<rect x="972" y="155" width="274" height="205" rx="14" fill="white" stroke="#d8e5df"/>
+<circle cx="1007" cy="189" r="19" fill="#16875d"/>
+<text x="1001" y="197" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="white" font-weight="700">4</text>
+<text x="994" y="242" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#203c33" font-weight="700">Open the app</text>
+<text x="994" y="282" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#566b63" font-weight="400">127.0.0.1:8502</text>
+<text x="994" y="315" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Upload · calibrate · review</text>
+<text x="44" y="406" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#566b63" font-weight="400">SETUP ILLUSTRATION · simplified screens, no private footage or API keys</text>
+</svg>

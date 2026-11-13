@@ -205,13 +205,34 @@ continuing elsewhere; do not describe this prototype as full automatic coaching.
   `DEMONSTRATION.md` scopes historical metrics, `DEVELOPMENT.md` maps code/tests.
 - The user explicitly requested pushing to GitHub under `kagamirudo`. CLI auth
   matches that account; the connected GitHub plugin uses another account, so use
-  `gh` CLI. Repository: private `https://github.com/kagamirudo/shuttlecoach-ai`. Do not
+  `gh` CLI. Repository: public `https://github.com/kagamirudo/shuttlecoach-ai`. Do not
   upload media, models, results, caches, credentials or upstream `.git` folders.
 - Root Git repository initialized with source files tracked as regular files,
   including pinned vendored TrackNet source (no submodule gitlink). Nested vendor
   metadata remains untouched and excluded. A source allowlist/credential-pattern
   check found 123 files, approximately 3.53 MiB, with no runtime private artifacts.
   Initial source commit `5b8b2c0b6fbf82636bb4495a7f81c81e51dba356` was pushed to
-  `origin/main` and verified through GitHub's API. Repository visibility is private.
+  `origin/main` and verified through GitHub's API. The repository was initially
+  private and was made public at the user's explicit request on 2026-11-13.
   Working-tree runtime files remain ignored. Future source changes should use
   this root repository; do not initialize inside a vendored upstream directory.
+
+## Public installation guide (2026-11-13)
+
+- User explicitly authorized public GitHub visibility. Remote HEAD matched the
+  reviewed local history before the visibility change; GitHub confirmed PUBLIC.
+- A source/history review checked 123 tracked files and 122 historical blobs.
+  No private media, model weights, generated results or API-key/private-key
+  patterns were found. No runtime folders were added by this documentation change.
+- `docs/INSTALL.md` now covers prerequisites, Mac/Linux/WSL setup, clone/build,
+  health checks, video import, calibration, inline AI, key persistence, updates,
+  shutdown and troubleshooting. README links it prominently.
+- Five original schematic SVG illustrations live under `docs/assets/`. Their
+  text/controls match the workflow and are explicitly labelled as illustrations,
+  not screenshots or real tracking results. They contain no real footage/keys.
+  All five were rasterized and visually checked; local Markdown links and SVG
+  XML were checked. SVGs are editable directly; previews are not committed.
+- Tested installation scope remains Apple-silicon Mac + Linux ARM64 container.
+  Intel/AMD64 and Windows/WSL instructions are documented but not exercised here.
+  No application code/dependency changed in this documentation-only update;
+  the latest functional suites remain 184 passing native and container tests.

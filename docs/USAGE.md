@@ -1,5 +1,7 @@
 # Using ShuttleCoach
 
+For a fresh Docker installation, use the [illustrated setup guide](INSTALL.md).
+
 Run commands from the repository root. Docker operations are covered in
 [DOCKER.md](DOCKER.md). This guide also documents native Mac execution for MPS.
 

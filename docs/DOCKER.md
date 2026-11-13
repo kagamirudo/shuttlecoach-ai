@@ -1,5 +1,8 @@
 # Docker operations
 
+First installation? Start with the [illustrated installation guide](INSTALL.md).
+This page is the shorter operations/reference guide for an existing checkout.
+
 ## Start, stop and update
 
 From the repository root, with Docker running and Make/Python 3 available:

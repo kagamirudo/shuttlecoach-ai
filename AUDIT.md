@@ -116,3 +116,13 @@ keys and upstream Git metadata are excluded from build context and publication.
 Native and Linux-container suites each passed 184 tests. Container health,
 non-root execution and absence of the API key in its environment were verified.
 Docker packaging does not constitute a new tracking-quality or biomechanics pass.
+
+## Public documentation release
+
+At the user's explicit request, the GitHub repository was made public on
+2026-11-13 after a source/history check for media, runtime artifacts and credential
+patterns. The public installation guide adds five original, labelled schematic
+SVG illustrations; no real footage, private screenshots or keys were published.
+Local documentation links/XML and rendered illustration layouts were checked.
+This documentation-only update does not extend the existing hardware or tracking
+validation claims; Intel/AMD64 and Windows/WSL instructions remain unexercised here.

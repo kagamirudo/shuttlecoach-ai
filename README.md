@@ -4,6 +4,11 @@ Local badminton video review: manual court calibration, player/birdie tracking,
 video-assisted footwork review, and evidence-linked AI analysis. Measurements,
 estimated movement and coaching evidence remain separate.
 
+**New here? Follow the [illustrated installation guide](docs/INSTALL.md)** for
+prerequisites, pictures, copyable commands, first-video setup and troubleshooting.
+
+![Install tools, clone the project, start Docker, then open the local dashboard.](docs/assets/install-overview.svg)
+
 ## Start with Docker
 
 Install and start Docker Desktop (or Docker Engine with Compose on Linux), then:
@@ -60,6 +65,7 @@ local paths are sent to Groq—only anonymized measurement summaries.
 
 | Guide | Contents |
 |---|---|
+| [Illustrated installation](docs/INSTALL.md) | Step-by-step setup with pictures and first-run checkpoints |
 | [Docker operations](docs/DOCKER.md) | Persistent folders, credentials, ports, CPU limits and troubleshooting |
 | [App and native usage](docs/USAGE.md) | Calibration, tracking, validation and CLI commands |
 | [Reviewed demonstration](docs/DEMONSTRATION.md) | Historical source-specific metrics and limits |

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img">
+<title>Read findings directly in the app</title>
+<desc>Review &amp; validate → AI analysis. No report download is required.. Schematic illustration, not a screenshot.</desc>
+<rect x="0" y="0" width="1280" height="760" rx="0" fill="#f2f7f4" stroke="#f2f7f4"/>
+<rect x="0" y="0" width="1280" height="118" rx="0" fill="#153d32" stroke="#153d32"/>
+<text x="44" y="51" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="white" font-weight="700">Read findings directly in the app</text>
+<text x="44" y="88" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#c9e8d9" font-weight="400">Review &amp; validate → AI analysis. No report download is required.</text>
+<rect x="40" y="150" width="1200" height="530" rx="14" fill="white" stroke="#d8e5df"/>
+<rect x="40" y="150" width="1200" height="44" rx="14" fill="#e3ece7" stroke="#d8e5df"/>
+<text x="245" y="179" font-family="Menlo, Consolas, monospace" font-size="18" fill="#566b63" font-weight="400">127.0.0.1:8502</text>
+<text x="72" y="239" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#203c33" font-weight="700">AI analysis</text>
+<rect x="72" y="261" width="1135" height="43" rx="14" fill="#eef3f0" stroke="#d8e5df"/>
+<text x="89" y="289" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#566b63" font-weight="400">› AI connection settings · optional Groq key</text>
+<rect x="72" y="325" width="408" height="49" rx="14" fill="#16875d" stroke="#16875d"/>
+<text x="92" y="356" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="white" font-weight="700">Analyze tracking and footwork</text>
+<rect x="72" y="399" width="551" height="240" rx="14" fill="white" stroke="#d8e5df"/>
+<text x="93" y="438" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#203c33" font-weight="700">Near player · your label</text>
+<text x="93" y="476" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Coverage · observed zone · missing time</text>
+<line x1="92" y1="490" x2="603" y2="490" stroke="#d8e5df" stroke-width="2"/>
+<text x="93" y="523" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#203c33" font-weight="700">Evidence-linked positioning findings</text>
+<text x="93" y="561" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#16875d" font-weight="400">› Measurements and video</text>
+<text x="93" y="603" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Footwork candidates need confirmation</text>
+<rect x="648" y="399" width="551" height="240" rx="14" fill="white" stroke="#d8e5df"/>
+<text x="669" y="438" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#203c33" font-weight="700">Far player · your label</text>
+<text x="669" y="476" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Coverage · observed zone · missing time</text>
+<line x1="668" y1="490" x2="1179" y2="490" stroke="#d8e5df" stroke-width="2"/>
+<text x="669" y="523" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#203c33" font-weight="700">Evidence-linked positioning findings</text>
+<text x="669" y="561" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#16875d" font-weight="400">› Measurements and video</text>
+<text x="669" y="603" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Footwork candidates need confirmation</text>
+<text x="44" y="736" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#566b63" font-weight="400">SETUP ILLUSTRATION · simplified screens, no private footage or API keys</text>
+</svg>

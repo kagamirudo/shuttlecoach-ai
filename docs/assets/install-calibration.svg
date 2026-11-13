@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="790" viewBox="0 0 1280 790" role="img">
+<title>Calibrate using visible painted intersections</title>
+<desc>Corners can be off screen. Match known floor-line crossings to the court reference.. Schematic illustration, not a screenshot.</desc>
+<rect x="0" y="0" width="1280" height="790" rx="0" fill="#f2f7f4" stroke="#f2f7f4"/>
+<rect x="0" y="0" width="1280" height="118" rx="0" fill="#153d32" stroke="#153d32"/>
+<text x="44" y="51" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="white" font-weight="700">Calibrate using visible painted intersections</text>
+<text x="44" y="88" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#c9e8d9" font-weight="400">Corners can be off screen. Match known floor-line crossings to the court reference.</text>
+<rect x="40" y="150" width="746" height="560" rx="14" fill="white" stroke="#d8e5df"/>
+<text x="65" y="191" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#203c33" font-weight="700">VIDEO VIEW · schematic court</text>
+<rect x="65" y="214" width="696" height="330" rx="0" fill="#c0d8c8" stroke="#b2ccbc"/>
+<path d="M 95 525 L 270 240 L 564 240 L 732 525 Z M 180 385 L 647 385 M 145 445 L 683 445 M 417 240 L 417 525 M 121 485 L 706 485" fill="none" stroke="white" stroke-width="4"/>
+<circle cx="180" cy="385" r="12" fill="#16875d" stroke="white" stroke-width="3"/>
+<text x="175" y="391" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="white" font-weight="700">1</text>
+<circle cx="647" cy="385" r="12" fill="#16875d" stroke="white" stroke-width="3"/>
+<text x="642" y="391" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="white" font-weight="700">2</text>
+<circle cx="145" cy="445" r="12" fill="#16875d" stroke="white" stroke-width="3"/>
+<text x="140" y="451" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="white" font-weight="700">3</text>
+<circle cx="683" cy="445" r="12" fill="#16875d" stroke="white" stroke-width="3"/>
+<text x="678" y="451" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="white" font-weight="700">4</text>
+<text x="65" y="587" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#16875d" font-weight="700">Choose: Visible line intersections</text>
+<text x="65" y="627" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#203c33" font-weight="400">Spread at least four known matches</text>
+<text x="65" y="662" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#203c33" font-weight="400">across width and depth; inspect projected lines.</text>
+<rect x="808" y="150" width="432" height="560" rx="14" fill="white" stroke="#d8e5df"/>
+<text x="836" y="191" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#203c33" font-weight="700">COURT REFERENCE</text>
+<rect x="882" y="224" width="282" height="324" rx="0" fill="#2c7852" stroke="#2c7852"/>
+<path d="M 902 239 L 1144 239 L 1144 530 L 902 530 Z M 902 385 L 1144 385 M 902 340 L 1144 340 M 902 430 L 1144 430 M 1023 239 L 1023 530" fill="none" stroke="white" stroke-width="3"/>
+<text x="836" y="590" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#203c33" font-weight="400">Select the named crossing,</text>
+<text x="836" y="624" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#203c33" font-weight="400">then click that same crossing</text>
+<text x="836" y="658" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#203c33" font-weight="400">in the video. Confirm alignment.</text>
+<text x="44" y="766" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#566b63" font-weight="400">SETUP ILLUSTRATION · simplified screens, no private footage or API keys</text>
+</svg>

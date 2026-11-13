@@ -14,6 +14,10 @@
 | `scripts/docker_compose.py` | Docker path/ownership and secret bridge |
 
 Read [HANDOFF.md](HANDOFF.md) and the root [AGENTS.md](../AGENTS.md) before changes.
+New installation instructions and schematic SVG pictures live in
+[INSTALL.md](INSTALL.md) and `docs/assets/`. Edit the SVGs directly; they contain
+no scripts, private screenshots, sample footage or API keys. Keep UI labels in
+the pictures aligned with the app and identify them as illustrations.
 
 ## Tests
 

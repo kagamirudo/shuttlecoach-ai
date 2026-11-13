@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="790" viewBox="0 0 1280 790" role="img">
+<title>Add your first video</title>
+<desc>Choose Local file → upload an MP4/MOV → Load local video.. Schematic illustration, not a screenshot.</desc>
+<rect x="0" y="0" width="1280" height="790" rx="0" fill="#f2f7f4" stroke="#f2f7f4"/>
+<rect x="0" y="0" width="1280" height="118" rx="0" fill="#153d32" stroke="#153d32"/>
+<text x="44" y="51" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="white" font-weight="700">Add your first video</text>
+<text x="44" y="88" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#c9e8d9" font-weight="400">Choose Local file → upload an MP4/MOV → Load local video.</text>
+<rect x="40" y="150" width="1200" height="565" rx="14" fill="white" stroke="#d8e5df"/>
+<rect x="40" y="150" width="1200" height="46" rx="14" fill="#e3ece7" stroke="#d8e5df"/>
+<text x="64" y="180" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#566b63" font-weight="400">●  ●  ●</text>
+<text x="245" y="180" font-family="Menlo, Consolas, monospace" font-size="18" fill="#566b63" font-weight="400">127.0.0.1:8502</text>
+<text x="72" y="239" font-family="Arial, Helvetica, sans-serif" font-size="31" fill="#203c33" font-weight="700">ShuttleCoach</text>
+<text x="72" y="278" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#16875d" font-weight="700">Prepare a clip</text>
+<text x="320" y="278" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#566b63" font-weight="400">Review &amp; validate</text>
+<line x1="72" y1="293" x2="262" y2="293" stroke="#16875d" stroke-width="4"/>
+<text x="72" y="338" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#203c33" font-weight="700">1 · Choose footage</text>
+<text x="72" y="380" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#203c33" font-weight="400">◉ Local file       ○ YouTube</text>
+<text x="72" y="424" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Absolute MP4/MOV path</text>
+<rect x="72" y="440" width="1100" height="48" rx="14" fill="#f8faf9" stroke="#d8e5df"/>
+<text x="90" y="471" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#566b63" font-weight="400">Or use the upload area below</text>
+<text x="72" y="524" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#203c33" font-weight="700">Or upload a local recording</text>
+<rect x="72" y="544" width="1100" height="86" rx="14" fill="#eef6f1" stroke="#9ac8af"/>
+<text x="96" y="593" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#566b63" font-weight="400">Drop an authorized .mp4 or .mov here</text>
+<rect x="948" y="563" width="195" height="45" rx="14" fill="white" stroke="#9ac8af"/>
+<text x="972" y="593" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#203c33" font-weight="400">Browse files</text>
+<rect x="72" y="652" width="242" height="44" rx="14" fill="#16875d" stroke="#16875d"/>
+<text x="92" y="681" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="white" font-weight="700">Load local video</text>
+<text x="44" y="766" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#566b63" font-weight="400">SETUP ILLUSTRATION · simplified screens, no private footage or API keys</text>
+</svg>
