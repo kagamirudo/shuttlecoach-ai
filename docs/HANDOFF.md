@@ -207,8 +207,11 @@ continuing elsewhere; do not describe this prototype as full automatic coaching.
   matches that account; the connected GitHub plugin uses another account, so use
   `gh` CLI. Repository: private `https://github.com/kagamirudo/shuttlecoach-ai`. Do not
   upload media, models, results, caches, credentials or upstream `.git` folders.
-- Root Git repository initialized with source files staged as regular files,
+- Root Git repository initialized with source files tracked as regular files,
   including pinned vendored TrackNet source (no submodule gitlink). Nested vendor
   metadata remains untouched and excluded. A source allowlist/credential-pattern
   check found 123 files, approximately 3.53 MiB, with no runtime private artifacts.
-  Do not claim the remote push succeeded until the repository URL/commit is verified.
+  Initial source commit `5b8b2c0b6fbf82636bb4495a7f81c81e51dba356` was pushed to
+  `origin/main` and verified through GitHub's API. Repository visibility is private.
+  Working-tree runtime files remain ignored. Future source changes should use
+  this root repository; do not initialize inside a vendored upstream directory.
