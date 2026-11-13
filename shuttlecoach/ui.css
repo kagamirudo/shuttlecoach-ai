@@ -46,7 +46,7 @@ h3 { font-size: 1.35rem !important; }
 }
 [data-testid="stTabs"] [role="tablist"] {
   gap: .4rem;
-  padding: .35rem;
+  padding: .35rem .35rem .9rem;
   background: #e7ede3;
   border-radius: .85rem;
   border-bottom: 0;
@@ -63,6 +63,10 @@ h3 { font-size: 1.35rem !important; }
   color: white;
 }
 [data-testid="stTabs"] [role="tab"] p { font-weight: 600; }
+[data-testid="stTabs"] .react-aria-SelectionIndicator {
+  top: auto !important;
+  bottom: -.45rem !important;
+}
 [data-testid="stTabs"] [data-baseweb="tab-highlight"],
 [data-testid="stTabs"] [data-baseweb="tab-border"] { display: none; }
 [data-testid="stTabs"] [role="tabpanel"] { padding-top: 1.3rem; }

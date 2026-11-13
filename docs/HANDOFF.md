@@ -239,6 +239,9 @@ continuing elsewhere; do not describe this prototype as full automatic coaching.
 
 ## Dashboard redesign (2026-11-13)
 
+- Follow-up: tab underlines sit 0.45rem below the selected pill, with extra
+  tab-strip bottom padding so the line no longer touches its edge (CSS only).
+
 - `app.py` now has three preparation tabs (Footage, Players & time, Court &
   tracking) and five review tabs (Overview, AI & practice, Birdie, Footwork,
   Validation). All tab contents remain mounted to preserve widget/calibration
