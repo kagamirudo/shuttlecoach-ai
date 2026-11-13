@@ -5,6 +5,7 @@
 | Path | Responsibility |
 |---|---|
 | `app.py`, `shuttlecoach/report_ui.py` | Prepare/review workflow and inline AI findings |
+| `shuttlecoach/ui.css`, `.streamlit/config.toml` | Responsive workspace styling and light court-green theme |
 | `shuttlecoach/runner.py`, `player_recovery.py` | Player pipeline, real-pose recovery and overlays |
 | `shuttlecoach/shuttle.py`, `shuttle_association.py` | Birdie candidates, raised court zone and reviewed association |
 | `shuttlecoach/calibration.py`, `validation.py` | Visible-intersection homography and frozen quality gates |

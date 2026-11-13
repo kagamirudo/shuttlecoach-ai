@@ -15,14 +15,14 @@
 <line x1="72" y1="293" x2="262" y2="293" stroke="#16875d" stroke-width="4"/>
 <text x="72" y="338" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#203c33" font-weight="700">1 · Choose footage</text>
 <text x="72" y="380" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#203c33" font-weight="400">◉ Local file       ○ YouTube</text>
-<text x="72" y="424" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63" font-weight="400">Absolute MP4/MOV path</text>
-<rect x="72" y="440" width="1100" height="48" rx="14" fill="#f8faf9" stroke="#d8e5df"/>
-<text x="90" y="471" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#566b63" font-weight="400">Or use the upload area below</text>
-<text x="72" y="524" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#203c33" font-weight="700">Or upload a local recording</text>
-<rect x="72" y="544" width="1100" height="86" rx="14" fill="#eef6f1" stroke="#9ac8af"/>
-<text x="96" y="593" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#566b63" font-weight="400">Drop an authorized .mp4 or .mov here</text>
-<rect x="948" y="563" width="195" height="45" rx="14" fill="white" stroke="#9ac8af"/>
-<text x="972" y="593" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#203c33" font-weight="400">Browse files</text>
+<text x="72" y="424" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#203c33" font-weight="700">Or upload a local recording</text>
+<rect x="72" y="444" width="1100" height="86" rx="14" fill="#eef6f1" stroke="#9ac8af"/>
+<text x="96" y="493" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#566b63">Drop an authorized .mp4 or .mov here</text>
+<rect x="948" y="463" width="195" height="45" rx="14" fill="white" stroke="#9ac8af"/>
+<text x="995" y="493" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#203c33">Upload</text>
+<rect x="72" y="554" width="1100" height="48" rx="14" fill="#f8faf9" stroke="#d8e5df"/>
+<text x="90" y="585" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#566b63">› Use a file path instead</text>
+<text x="72" y="630" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#566b63">Prepare a clip → 1 · Footage</text>
 <rect x="72" y="652" width="242" height="44" rx="14" fill="#16875d" stroke="#16875d"/>
 <text x="92" y="681" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="white" font-weight="700">Load local video</text>
 <text x="44" y="766" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#566b63" font-weight="400">SETUP ILLUSTRATION · simplified screens, no private footage or API keys</text>

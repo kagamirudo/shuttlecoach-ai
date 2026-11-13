@@ -47,6 +47,13 @@ Tracking commands accept `DEVICE=auto`, `DEVICE=cpu` or `DEVICE=mps`.
 
 ## Analyze another clip
 
+The dashboard has two workspaces. **Prepare a clip** has three steps: **Footage**,
+**Players & time**, and **Court & tracking**. **Review & validate** separates
+**Overview**, **AI & practice**, **Birdie**, **Footwork**, and **Validation**.
+The status cards summarize tracking gates and the selected duration; detailed
+measurements and exports remain available without crowding the overview.
+For a local path, expand **Use a file path instead** on the Footage step.
+
 1. Supply an authorized YouTube URL or local path. Playlist parameters are removed.
 2. Mark rally intervals and distinct athlete names, including end changes. Each
    run supports a span of up to ten minutes, including retained context or gaps.

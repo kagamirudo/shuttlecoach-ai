@@ -12,11 +12,15 @@ def isolated_credential_store(monkeypatch):
     monkeypatch.setattr(credentials,'_keychain',forbidden)
 
 
-def test_dashboard_starts_without_video_or_results():
+def test_dashboard_starts_without_video_or_results(tmp_path,monkeypatch):
+    import shuttlecoach.paths as paths
+    monkeypatch.setattr(paths,'RESULTS',tmp_path)
     app=AppTest.from_file(Path(__file__).resolve().parents[1]/"app.py",default_timeout=30).run()
     assert not app.exception
     assert app.title[0].value=="ShuttleCoach"
     assert app.radio[0].value=="Local file"
+    assert [t.label for t in app.tabs]==['Prepare a clip','1 · Footage','2 · Players & time','3 · Court & tracking','Review & validate']
+    assert not next(e for e in app.expander if e.label=='Use a file path instead').proto.expanded
     app.radio[0].set_value("YouTube").run()
     assert not app.exception
     assert app.button[0].disabled
@@ -49,6 +53,13 @@ def test_review_explains_coverage_and_zones_without_exposing_raw_measurements(tm
                   for player,side,visible in [('Alice','near',True),('Alice','near',True),('Bob','far',True),('Bob','far',False)]]).to_csv(run/'observations.csv',index=False)
     app=AppTest.from_file(Path(__file__).resolve().parents[1]/'app.py',default_timeout=30).run()
     assert not app.exception
+    tabs={t.label:t for t in app.tabs}
+    assert [m.value for m in app.metric if m.label=='Player tracking']==['Needs fixes']
+    assert [m.value for m in app.metric if m.label=='Birdie tracking']==['Not reviewed']
+    assert any(h.value=='Your tracking results' for h in tabs['Overview'].subheader)
+    assert not any(h.value=='AI analysis' for h in tabs['Overview'].subheader)
+    assert any(h.value=='AI analysis' for h in tabs['AI & practice'].subheader)
+    assert any(h.value=='Annotate the frozen validation sample' for h in tabs['Validation'].subheader)
     assert [m.value for m in app.metric if m.label=='Tracking coverage']==['100.0%','50.0%']
     assert next(m.value for m in app.metric if m.label=='Reviewed player pairs usable')=='83.0%'
     assert any('not passed validation' in w.value for w in app.warning)
@@ -168,3 +179,13 @@ def test_changed_duration_and_names_can_start_a_separate_tracking_job(tmp_path,m
     new=json.loads(configs[1].read_text())
     assert new['rallies']==[{'start_s':0.,'end_s':375.,'near_player':'Shi Yu Qi','far_player':'Random China'}]
     assert new['calibration']['reviewed']
+
+    # Opening a completed worker selects its result and takes the user to review.
+    processes[1].returncode=0
+    Path(app.session_state['log']).write_text('RESULT=/saved/completed-run\n')
+    app.run()
+    next(b for b in app.button if b.label=='Open completed analysis').click().run()
+    assert not app.exception
+    assert app.session_state['selected_run']=='/saved/completed-run'
+    assert app.session_state['workspace']=='Review & validate'
+    assert 'process' not in app.session_state

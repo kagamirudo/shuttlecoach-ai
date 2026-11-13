@@ -27,12 +27,15 @@ with sync_playwright() as p:
     expect(page.get_by_role("button",name="Retrieve video")).to_be_enabled()
     page.get_by_text("Local file",exact=True).click()
     if len(sys.argv)>1:
+        page.get_by_text("Use a file path instead",exact=True).click()
         page.get_by_role("textbox",name="Absolute MP4/MOV path").fill(str(Path(sys.argv[1]).resolve()))
         page.get_by_role("button",name="Load local video").click()
+        page.get_by_role("tab",name="2 · Players & time",exact=True).click()
         page.get_by_role("heading",name="2 · Mark the rallies").wait_for(timeout=180000)
         expect(page.get_by_role("button",name="Run player tracking")).to_be_disabled()
         page.get_by_text("Exactly two singles players are visible",exact=True).click()
         page.get_by_text("The selected camera view stays fixed without cuts",exact=True).click()
+        page.get_by_role("tab",name="3 · Court & tracking",exact=True).click()
         page.get_by_role("spinbutton",name="Calibration time in source seconds").fill("20")
         page.get_by_role("spinbutton",name="Calibration time in source seconds").press("Enter")
         page.wait_for_timeout(1000)
@@ -54,11 +57,13 @@ with sync_playwright() as p:
     page.get_by_role("tab",name="Review & validate").click()
     if len(sys.argv)>2:
         page.get_by_role("combobox",name="Analysis",exact=True).click()
-        page.get_by_role("option",name=sys.argv[2],exact=True).click()
-        page.get_by_role("heading",name="Phase 2 · Birdie tracking & evidence report",exact=True).wait_for()
+        stamp=selected_run.name
+        label=f"{stamp[:4]}-{stamp[4:6]}-{stamp[6:8]} · {stamp[9:11]}:{stamp[11:13]}:{stamp[13:15]} UTC" if re.fullmatch(r"\d{8}T\d{12}Z",stamp) else stamp
+        page.get_by_role("option",name=label,exact=True).click()
+        page.get_by_role("tab",name="Overview",exact=True).click()
         expect(page.get_by_role("radiogroup",name="Playback",exact=True)).to_have_count(1)
-    if page.get_by_role("heading",name=re.compile("^Validation:")).count():
-        page.get_by_role("heading",name=re.compile("^Validation:")).wait_for()
+    if page.get_by_role("radiogroup",name="Playback",exact=True).count():
+        page.get_by_role("tab",name="Overview",exact=True).click()
         page.wait_for_function("""() => {const v=[...document.querySelectorAll('video')].find(v=>v.offsetParent!==null); return v && v.readyState>=2 && v.duration>0;}""",timeout=30000)
         page.locator("video:visible").first.evaluate("v=>{v.muted=true;v.currentTime=1;return v.play()}")
         page.wait_for_function("""() => [...document.querySelectorAll('video')].some(v=>v.offsetParent!==null && v.currentTime>1.2)""",timeout=15000)
@@ -68,14 +73,14 @@ with sync_playwright() as p:
         page.wait_for_function("""() => {const v=[...document.querySelectorAll('video')].find(v=>v.offsetParent!==null);return v && v.duration>1700;}""",timeout=60000)
         page.screenshot(path=str(root/".cache"/"full-video-browser.png"),full_page=True)
         page.get_by_text("Analyzed clip",exact=True).click()
-        if page.get_by_text("Birdie tracking",exact=True).count():
-            page.get_by_text("Birdie tracking",exact=True).click()
+        has_birdie=page.get_by_role("radio",name="Birdie tracking",exact=True).count()>0
+        if has_birdie:
+            page.get_by_role("radio",name="Birdie tracking",exact=True).check()
             page.wait_for_function("""duration => {const v=[...document.querySelectorAll('video')].find(v=>v.offsetParent!==null); return v && v.readyState>=2 && Math.abs(v.duration-duration)<.2;}""",arg=expected_duration,timeout=30000)
             page.locator("video:visible").first.evaluate("v=>{v.muted=true;v.currentTime=160;return v.play()}")
             page.wait_for_function("""() => [...document.querySelectorAll('video')].some(v=>v.offsetParent!==null && v.currentTime>160.2)""",timeout=15000)
             page.locator("video:visible").first.evaluate("v=>v.pause()")
-            if expected['gate']=='blocked':expect(page.get_by_text(re.compile('^Coaching withheld:'))).to_be_visible()
-            else:expect(page.get_by_text(re.compile('^Both tracking gates passed'))).to_be_visible()
+            page.get_by_role("tab",name="Birdie",exact=True).click()
             if page.get_by_text("Birdie court trajectory",exact=True).count():
                 expect(page.get_by_text(re.compile("^(The green zone includes|Detection is restricted)"))).to_be_visible()
                 with page.expect_download() as projection:
@@ -83,11 +88,14 @@ with sync_playwright() as p:
                 projection.value.save_as(root/".cache"/"browser-birdie-projection.png")
                 assert (root/".cache"/"browser-birdie-projection.png").stat().st_size>1000
             page.screenshot(path=str(root/".cache"/"phase2-browser.png"),full_page=True)
+            page.get_by_role("tab",name="AI & practice",exact=True).click()
             with page.expect_download() as phase2_report:
                 page.get_by_role("button",name="Download Phase 2 report",exact=True).click()
             phase2_report.value.save_as(root/".cache"/"browser-phase2-report.md")
             assert f"**{expected['gate'].upper()}**" in (root/".cache"/"browser-phase2-report.md").read_text()
+            page.get_by_role("tab",name="Overview",exact=True).click()
             page.get_by_text("Analyzed clip",exact=True).click()
+        page.get_by_role("tab",name="Validation",exact=True).click()
         with page.expect_download() as report:
             page.get_by_role("button",name="Download report",exact=True).click()
         report.value.save_as(root/".cache"/"browser-report.md")
@@ -98,12 +106,12 @@ with sync_playwright() as p:
         exported.value.save_as(archive)
         with zipfile.ZipFile(archive) as bundle:
             assert {"report.md","observations.csv","overlay.mp4","screening.json","analysis.json"}<=set(bundle.namelist())
-            if page.get_by_text("Birdie tracking",exact=True).count():
+            if has_birdie:
                 assert {"coaching_report.md","coaching.json","shuttle.csv","shuttle_overlay.mp4","shuttle_validation.json"}<=set(bundle.namelist())
                 report=json.loads(bundle.read('coaching.json'))
                 assert report['gate']==expected['gate'] and report['coaching_enabled']==expected['coaching_enabled']
                 if page.get_by_text("Birdie court trajectory",exact=True).count():
                     assert {"shuttle_court_projection.png","shuttle_zone_preview.png"}<=set(bundle.namelist())
     assert not errors,errors
-    print("Browser checks passed: source controls, calibration gate, playback/seek and report/ZIP exports; Phase 2 checked:",bool(page.get_by_text("Birdie tracking",exact=True).count()))
+    print("Browser checks passed: source controls, calibration gate, playback/seek and report/ZIP exports; Phase 2 checked:",bool((selected_run/'shuttle.json').exists()))
     browser.close()

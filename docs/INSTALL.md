@@ -153,15 +153,16 @@ and can remain separate; the Docker launcher does not kill it.
 
 ![Illustration of Prepare a clip, Local file, the video uploader, and Load local video.](assets/install-video.svg)
 
-In **Prepare a clip**:
+In **Prepare a clip → 1 · Footage**:
 
 1. Select **Local file**.
 2. Use **Or upload a local recording** to choose an MP4/MOV you are authorized to analyze.
 3. Click **Load local video**.
-4. Confirm that the source video plays before configuring tracking.
+4. Open **Preview full source video** to check playback before configuring tracking.
 
 For large files, you can instead copy a recording into this checkout's `data/`
-folder and enter its **absolute path** in **Absolute MP4/MOV path**. The Docker
+folder, expand **Use a file path instead**, and enter its **absolute path** in
+**Absolute MP4/MOV path**. The Docker
 launcher preserves this checkout's absolute path inside the container, so an
 example path on Mac is `/Users/your-name/projects/shuttlecoach-ai/data/match.mp4`.
 That example is a placeholder: replace it with your real path. Files elsewhere
@@ -175,7 +176,7 @@ bypass access controls.
 
 ## 6. Select players, time and court calibration
 
-Under **2 · Mark the rallies**, enter the time intervals and near/far player
+Open **2 · Players & time**. Under **2 · Mark the rallies**, enter the time intervals and near/far player
 labels. Names are your labels, not automatic identity recognition. Each run
 supports a span of up to ten minutes. Start with a short segment while checking
 calibration, then increase the interval. Exclude warm-up and pauses when you
@@ -187,7 +188,7 @@ selection. This prototype is intended for fixed-camera singles footage.
 
 ![Illustration of matching visible painted court-line crossings in the video to a court reference.](assets/install-calibration.svg)
 
-Under **3 · Calibrate the court**:
+Open **3 · Court & tracking**. Under **3 · Calibrate the court**:
 
 - **Four outer corners:** use only when all four physical doubles-court corners
   are visible. Click near-left, near-right, far-right, then far-left.
@@ -212,15 +213,17 @@ packaging does not make it a real-time system.
 
 In **Review & validate**:
 
-1. Select your analysis. Watch the analyzed overlay and use **Full source video**
+1. Select your analysis. **Overview** contains playback, a court map and player summaries.
+   Watch the analyzed overlay and use **Full source video**
    for the complete original recording/audio.
 2. Read per-player coverage, accepted court-zone shares and missing seconds.
    Coverage is availability, not proof of correct identity or accurate feet.
-3. Review the frozen validation sample and unused court-line intersections.
-   Birdie validation is separate. Failed and occluded frames remain in evaluation.
-4. Use **Footwork · movement review** to confirm candidate events and mark timing
+3. Open **Validation** for player samples and unused court-line intersections.
+   **Birdie** contains birdie tracking and its separate validation. Failed and occluded frames remain in evaluation.
+4. Open **Footwork** to confirm candidate events and mark timing
    when the video supports it. Candidate counts are not confirmed steps or technique grades.
-5. For the optional LLM, open **AI connection settings**, enter a Groq key from
+5. Open **AI & practice** for inline findings and gated practice cards. For the optional LLM,
+   open **AI connection settings**, enter a Groq key from
    [Groq Console](https://console.groq.com/keys), then click **Analyze tracking and footwork**.
 
 The report is displayed **directly in the app**. You do not need to download a

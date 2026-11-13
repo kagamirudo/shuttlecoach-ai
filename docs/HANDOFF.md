@@ -236,3 +236,35 @@ continuing elsewhere; do not describe this prototype as full automatic coaching.
   Intel/AMD64 and Windows/WSL instructions are documented but not exercised here.
   No application code/dependency changed in this documentation-only update;
   the latest functional suites remain 184 passing native and container tests.
+
+## Dashboard redesign (2026-11-13)
+
+- `app.py` now has three preparation tabs (Footage, Players & time, Court &
+  tracking) and five review tabs (Overview, AI & practice, Birdie, Footwork,
+  Validation). All tab contents remain mounted to preserve widget/calibration
+  state. Tracking workers and evidence/quality-gate logic are unchanged.
+- Overview pairs playback with a smaller court map, followed by bordered player
+  summaries. Shared cards show player/birdie validation and selected duration.
+  Run choices use UTC dates; local paths/raw measurements sit in expanders.
+- Upload is the primary local input; **Use a file path instead** exposes the path.
+  The load button remains enabled so an unapplied text edit cannot trap a user
+  behind a disabled control. Time columns have readable labels and seconds help.
+- Completed tracking can open its selected analysis directly in Review & validate;
+  the worker progress fragment is shared across both workspaces.
+- `.streamlit/config.toml` provides the light green theme; `shuttlecoach/ui.css`
+  styles native Streamlit controls without new dependencies or changing click
+  coordinates. Docker explicitly includes only the config file, never secrets.
+- Native **184 passed** (`.cache/ui-tests.log`); rebuilt Docker **184 passed**
+  (`.cache/ui-docker-tests.log`). AppTest now checks tab placement, empty start,
+  current/blocked/stale practice cards, rerun state and opening completed jobs.
+- Browser review checked the current recording's overview/inline AI, file-path
+  loading and separate timing/calibration steps at actual 614px and 816px widths.
+  No overflow of page bounds was observed. Chrome's existing Dark Reader
+  extension recolors the page; neutral appearance was checked in the in-app browser.
+  Requested viewport overrides did not change actual widths, so 390/1440px layouts
+  are not claimed tested. Full calibration/export browser scripts were updated
+  for the new navigation but were not rerun in this pass.
+- Docker is rebuilt and healthy on 8502. No tracking rerun, accuracy improvement,
+  fresh AI API request or new coaching validation is claimed. Current source
+  remains failed/pending as documented above. Usage/install docs and two schematic
+  illustrations were updated; both illustrations were rendered and checked.

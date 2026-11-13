@@ -41,7 +41,7 @@ an existing calibration session can stay open.
 2. Mark visible court-line intersections, review projected lines, and choose intervals/player labels.
 3. Run tracking and inspect the timestamped overlay; full source playback includes audio.
 4. Review identities, foot positions, unused court intersections, birdie candidates and actual rallies.
-5. Open **AI analysis** for player cards and measurement/video evidence. Use **AI connection settings** for Groq.
+5. Open **AI & practice → AI analysis** for player cards and measurement/video evidence. Use **AI connection settings** for Groq.
 
 AI analysis describes measured coverage, accepted court positions and their
 changes over time. Footwork candidates need video confirmation. Practice cards

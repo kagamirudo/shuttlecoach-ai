@@ -33,7 +33,8 @@ points=court.image_to_court(np.array([LANDMARKS[n] for n in names]),np.linalg.in
 with sync_playwright() as p:
     browser=p.chromium.launch(executable_path='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless=True)
     page=browser.new_page(viewport={'width':1440,'height':1100});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-    page.goto(os.environ.get('SHUTTLECOACH_URL', 'http://127.0.0.1:8501'));page.get_by_role('textbox',name='Absolute MP4/MOV path').fill(str(source));page.get_by_role('button',name='Load local video',exact=True).click()
+    page.goto(os.environ.get('SHUTTLECOACH_URL', 'http://127.0.0.1:8501'));page.get_by_text('Use a file path instead',exact=True).click();page.get_by_role('textbox',name='Absolute MP4/MOV path').fill(str(source));page.get_by_role('button',name='Load local video',exact=True).click()
+    page.get_by_role('tab',name='3 · Court & tracking',exact=True).click()
     page.get_by_text('Visible line intersections',exact=True).click()
     component=page.frame_locator('iframe[title="streamlit_image_coordinates.streamlit_image_coordinates"]').first
     def settled():

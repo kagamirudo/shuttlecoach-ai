@@ -1,5 +1,7 @@
 **
 !app.py
+!.streamlit/
+!.streamlit/config.toml
 !pyproject.toml
 !requirements-lock.txt
 !Makefile

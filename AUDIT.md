@@ -126,3 +126,13 @@ SVG illustrations; no real footage, private screenshots or keys were published.
 Local documentation links/XML and rendered illustration layouts were checked.
 This documentation-only update does not extend the existing hardware or tracking
 validation claims; Intel/AMD64 and Windows/WSL instructions remain unexercised here.
+# Dashboard UI refresh (2026-11-13)
+
+Reorganized setup and review into focused tabs, added readable gate/duration cards,
+paired playback with a smaller court map, and added the packaged light-green theme.
+No model, source timestamps, observations, validation thresholds or coaching policy
+changed. Native and rebuilt-container suites each passed 184 tests, including
+state-preserving reruns and blocked/stale practice paths. Browser checks covered
+video loading, setup navigation, current results and inline analysis at actual
+614px/816px widths. Full export/calibration browser scripts were updated but not
+executed; tracking accuracy and provider calls were not rerun for this UI change.

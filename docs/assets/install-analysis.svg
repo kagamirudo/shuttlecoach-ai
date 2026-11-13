@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img">
 <title>Read findings directly in the app</title>
-<desc>Review &amp; validate → AI analysis. No report download is required.. Schematic illustration, not a screenshot.</desc>
+<desc>Review &amp; validate → AI &amp; practice. No report download is required.. Schematic illustration, not a screenshot.</desc>
 <rect x="0" y="0" width="1280" height="760" rx="0" fill="#f2f7f4" stroke="#f2f7f4"/>
 <rect x="0" y="0" width="1280" height="118" rx="0" fill="#153d32" stroke="#153d32"/>
 <text x="44" y="51" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="white" font-weight="700">Read findings directly in the app</text>
-<text x="44" y="88" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#c9e8d9" font-weight="400">Review &amp; validate → AI analysis. No report download is required.</text>
+<text x="44" y="88" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#c9e8d9" font-weight="400">Review &amp; validate → AI &amp; practice. No report download is required.</text>
 <rect x="40" y="150" width="1200" height="530" rx="14" fill="white" stroke="#d8e5df"/>
 <rect x="40" y="150" width="1200" height="44" rx="14" fill="#e3ece7" stroke="#d8e5df"/>
 <text x="245" y="179" font-family="Menlo, Consolas, monospace" font-size="18" fill="#566b63" font-weight="400">127.0.0.1:8502</text>
